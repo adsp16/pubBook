@@ -1,7 +1,10 @@
 const twilio = require("twilio");
-const accountSid = "ACc5efcac8bc38bc0fe96671de0b11b724";
-const authToken = "65f77e5d58b53fa0c93f02880613fb9b";
-const client = new twilio(accountSid, authToken);
+const functions = require("firebase-functions");
+const envVariables = functions.config();
+const client = new twilio(
+  envVariables.twilio.accountsid,
+  envVariables.twilio.authtoken
+);
 
 const sendMessage = (phoneNumber, genCode) => {
   client.messages
@@ -16,6 +19,11 @@ const sendMessage = (phoneNumber, genCode) => {
     .catch((err) => console.log(err));
 };
 
+const envVars = () => {
+  return envVariables;
+};
+
 // sendMessage("07591206911", "13455");
 
 exports.sendMessage = sendMessage;
+exports.envVars = envVars;

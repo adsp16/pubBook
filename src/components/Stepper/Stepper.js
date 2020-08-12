@@ -8,9 +8,14 @@ import {
   Typography,
 } from "@material-ui/core";
 
+import ErrorAlert from "../Alerts/ErrorAlert";
+import SuccessAlert from "../Alerts/SuccessAlert";
+
 import StepOne from "../Steps/StepOne";
 import StepTwo from "../Steps/StepTwo";
 import StepThree from "../Steps/StepThree";
+
+import { useStyles } from "./StepperJSS";
 
 const getSteps = () => {
   return ["Method", "Details", "Verified"];
@@ -20,10 +25,12 @@ const VerifiationStepper = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [vMethod, setVMethod] = useState("");
   const steps = getSteps();
+  const [errorMessage, seterrorMessage] = useState("");
+  const [successMessage, setsuccessMessage] = useState("");
+  const [snackOpen, setsnackOpen] = useState(false);
+  const [successSnackOpen, setsuccessSnackOpen] = useState(false);
 
-  useEffect(() => {
-    console.log(vMethod);
-  }, [vMethod]);
+  const classes = useStyles();
 
   const getStepContent = (currentStep) => {
     switch (currentStep) {
@@ -40,10 +47,15 @@ const VerifiationStepper = () => {
             verificationMethod={vMethod}
             backStep={handleBackStep}
             nextStep={handleNextStep}
+            handleError={handleError}
+            getExactStep={getExactStep}
+            handleSuccess={handleSuccess}
           />
         );
       case 2:
-        return <StepThree />;
+        return (
+          <StepThree backStep={handleBackStep} getExactStep={getExactStep} />
+        );
       default:
         return new Error("Should not make it here");
     }
@@ -61,9 +73,23 @@ const VerifiationStepper = () => {
     setVMethod(id);
   };
 
+  const handleError = (errorMessage) => {
+    setsnackOpen(true);
+    seterrorMessage(errorMessage);
+  };
+
+  const handleSuccess = (successMessage) => {
+    setsuccessSnackOpen(true);
+    setsuccessMessage(successMessage);
+  };
+
+  const getExactStep = (step) => {
+    setCurrentStep(step);
+  };
+
   return (
     <div>
-      <Stepper activeStep={currentStep}>
+      <Stepper className={classes.root} activeStep={currentStep}>
         {steps.map((label) => {
           return (
             <Step key={label}>
@@ -74,6 +100,16 @@ const VerifiationStepper = () => {
       </Stepper>
       {getStepContent(currentStep)}
       <Box marginTop={2} display="flex" justifyContent="space-between"></Box>
+      <ErrorAlert
+        setOpen={setsnackOpen}
+        open={snackOpen}
+        errorMessage={errorMessage}
+      />
+      <SuccessAlert
+        successMessage={successMessage}
+        open={successSnackOpen}
+        setOpen={setsuccessSnackOpen}
+      />
     </div>
   );
 };

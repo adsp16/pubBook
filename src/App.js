@@ -1,12 +1,12 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import Entry from "./containers/Entry";
+import AppRouter from "./Router/AppRouter";
 
 function App() {
   return (
     <div className="App">
-      <Entry />
+      <AppRouter />
     </div>
   );
 }
