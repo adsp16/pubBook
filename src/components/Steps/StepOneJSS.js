@@ -15,6 +15,7 @@ export const useStyles = makeStyles((theme) => ({
   Icon: {
     fontSize: "7rem",
     marginRight: "2rem",
+    color: theme.palette.darkGrey.main,
   },
   ButtonLabel: {
     textTransform: "none",
