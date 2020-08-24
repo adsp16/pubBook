@@ -30,7 +30,7 @@ const AppRouter = () => {
         path="/admin-dashboard"
         component={Admin}
         layout={Dashboard}
-        exact="true"
+        exact={true}
       ></AppRoute>
     </Router>
   );

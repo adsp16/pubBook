@@ -53,10 +53,13 @@ exports.addUser = functions.https.onRequest((request, response) => {
       locationInfo = "Could not get location";
     }
 
+    const currentTimestamp = admin.firestore.Timestamp.now();
+    console.log(currentTimestamp);
+
     const newUser = {
       email: email,
       mobile: mobile,
-      loginAt: moment.timeNow(),
+      loginAt: currentTimestamp,
       location: locationInfo,
     };
 
@@ -65,11 +68,28 @@ exports.addUser = functions.https.onRequest((request, response) => {
       .collection("user")
       .add(newUser)
       .then((result) => {
-        response.send(`User added ${result.id}`);
+        console.log("added in here");
+
+        response.send("Got here user added");
       })
       .catch((err) => {
         console.log(err);
         response.send("Could not add user try again");
       });
+  });
+});
+
+exports.getlastLogins = functions.https.onRequest((request, response) => {
+  cors(request, response, () => {
+    admin
+      .firestore()
+      .collection("user")
+      .orderBy("loginAt", "desc")
+      .limit(20)
+      .get()
+      .then((snapShot) => {
+        response.send(snapShot.docs);
+      })
+      .catch((err) => response.send(err));
   });
 });

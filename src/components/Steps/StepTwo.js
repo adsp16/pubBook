@@ -131,21 +131,6 @@ const StepTwo = React.memo(
             handleError("We did something wrong, please try again");
             console.log(err);
           });
-
-        // db.collection("user")
-        //   .add({
-        //     email: email,
-        //     signInTime: timeNow(),
-        //   })
-        //   .then((result) => {
-        //     setCodeInput("email");
-        //     getExactStep(2);
-        //     console.log(result, "user added");
-        //   })
-        //   .catch((err) => {
-        //     console.log(err);
-        //     handleError("It was us, something went wrong, try again");
-        //   });
       } else {
         setconfirmLoading(false);
         handleError("Confirmation code was not correct, try again");
@@ -161,7 +146,6 @@ const StepTwo = React.memo(
         const payLoad = {
           email: formData.email,
           mobile: formData.mobileNumber,
-          loginAt: timeNow(),
         };
 
         axios
@@ -177,6 +161,7 @@ const StepTwo = React.memo(
           })
           .catch((err) => {
             console.log(err);
+            setconfirmLoading(false);
             handleError("We did something wrong, please try again");
             console.log(err);
           });
@@ -190,6 +175,7 @@ const StepTwo = React.memo(
       console.log(!formData.email);
       console.log(!formData.mobileNumber);
       setisLoading(true);
+      console.log(timeNow());
 
       if (!formData.email && !formData.mobileNumber) {
         setisLoading(false);
@@ -202,6 +188,8 @@ const StepTwo = React.memo(
         mobile: formData.mobileNumber,
         loginAt: timeNow(),
       };
+
+      console.log(payLoad);
 
       axios
         .post(
@@ -219,7 +207,8 @@ const StepTwo = React.memo(
     const getInputType = () => {
       const { mobileNumber } = formData;
       console.log(mobileNumber);
-      console.log(verificationMethod);
+
+      // eslint-disable-next-line default-case
       switch (verificationMethod) {
         case "sms":
           return (
@@ -260,6 +249,8 @@ const StepTwo = React.memo(
           );
         case null:
           return null;
+        default:
+          return <h1>Should not be here</h1>;
       }
     };
 

@@ -6,7 +6,7 @@ import { useStyles } from "./ErrorAlertJSS";
 const ErrorAlert = ({ open, setOpen, errorMessage }) => {
   const styles = useStyles();
 
-  const handleClose = (event, reason) => {
+  const handleClose = (reason) => {
     if (reason === "clickaway") {
       return;
     }

@@ -1,9 +1,20 @@
 const moment = require("moment");
 
 export const timeNow = () => {
-  return moment().format();
+  const now = new Date();
+  const timeStamp = now.getTime();
+  console.log(timeStamp);
+  return timeStamp;
 };
 
-export const addExpiryTime = (amount, unit) => {
-  return moment().add(amount, unit).format();
+// const addExpiryTime = (amount, unit) => {
+//   return moment().add(amount, unit).format();
+// };
+
+export const convTimestamp = (num) => {
+  return moment.unix(num);
+};
+
+export const getTimeStamp = (date) => {
+  return moment(date).unix();
 };

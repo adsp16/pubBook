@@ -70,6 +70,7 @@ const StepOne = ({ nextStep, setVerifiMethod }) => {
           </Paper>
         </Button>
       </Grid>
+
       {noConfirm && (
         <Grid item xs={12}>
           <Button

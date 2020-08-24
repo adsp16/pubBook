@@ -31,7 +31,7 @@ const Dashboard = (props) => {
       <div className={classes.toolbar} />
       <List>
         {["Users", "Logout"].map((text, index) => (
-          <ListItem key={index} button key={text}>
+          <ListItem key={index} button>
             <ListItemText primary={text} />
           </ListItem>
         ))}
