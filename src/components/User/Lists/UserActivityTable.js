@@ -101,13 +101,8 @@ const UserActivityTable = ({ handleError }) => {
           handleError(err.message);
         });
     } else if (startDate.getTime() === endDate.getTime()) {
-      console.log("in equals");
-
       const nSDate = startDate.setHours(0, 0, 0, 0);
       const nEDate = endDate.setHours(23, 59, 59, 999);
-
-      console.log(nSDate + "Twat");
-      console.log(nEDate + "Twat");
 
       db.collection("user")
         .orderBy("loginAt")
