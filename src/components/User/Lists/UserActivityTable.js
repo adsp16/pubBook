@@ -130,9 +130,10 @@ const UserActivityTable = ({ handleError }) => {
         .catch((err) => {
           console.log(err);
           handleError(err.message);
+          console.log("git merge");
         });
     } else {
-      handleError("Start date must be before end date and must");
+      handleError("Start date must be before or the same as the end date ");
     }
   };
 

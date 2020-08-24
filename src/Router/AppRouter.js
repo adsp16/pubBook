@@ -6,6 +6,8 @@ import Admin from "../containers/Admin";
 import Dashboard from "../components/Layouts/Dashboard";
 import Front from "../components/Layouts/FrontLayout";
 
+console.log("fuck that");
+
 const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
   <Route
     {...rest}
