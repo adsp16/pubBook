@@ -128,9 +128,9 @@ const UserActivityTable = ({ handleError }) => {
           setTableData(mArr);
         })
         .catch((err) => {
+          console.log("push change to remote branch for review");
           console.log(err);
           handleError(err.message);
-          console.log("git merge");
         });
     } else {
       handleError("Start date must be before or the same as the end date ");
