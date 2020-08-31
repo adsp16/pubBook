@@ -162,6 +162,11 @@ const UserActivityTable = ({ handleError }) => {
     );
   };
 
+  const initEndDate = (date) => {
+    console.log(date);
+
+    setEndDate(date);
+  };
   return (
     <React.Fragment>
       <div className={classes.root}>
@@ -179,7 +184,7 @@ const UserActivityTable = ({ handleError }) => {
               id="endDate"
               dateFormat="dd/MM/yyyy"
               selected={endDate}
-              onChange={(date) => setEndDate(date)}
+              onChange={(date) => initEndDate(date)}
               customInput={<CustomDateInput labels="End Date" />}
             />
           </Box>

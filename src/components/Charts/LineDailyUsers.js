@@ -16,7 +16,7 @@ const LineDailyUsers = () => {
     const uEdate = endDate.unix(endDate);
 
     const tryDate = new Date();
-    const tryEDate = new Date().setHours(0, 0, 0, 0);
+    const tryEDate = new Date();
     const newDat1 = tryDate.setHours(23, 59, 59, 999);
 
     console.log(tryDate);
@@ -25,8 +25,8 @@ const LineDailyUsers = () => {
 
     db.collection("user")
       .orderBy("loginAt")
-      .startAt(tryDate)
-      .endAt(tryEDate)
+      .startAt(1597449600)
+      .endAt(1597535999)
       .get()
       .then((snapShot) => {
         console.log(snapShot.docs);
