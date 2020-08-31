@@ -28,13 +28,20 @@ const tableCols = [
   },
 ];
 
+const options = {
+  exportButton: true,
+  headerStyle: {
+    zIndex: 0,
+  },
+};
+
 const UserActivityTable = ({ handleError }) => {
   const classes = useStyles();
   // const [httpData, callGetHttp] = useGetHttp();
   const [isLoading, setisLoading] = useState(false);
   const [tableData, setTableData] = useState([]);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
 
   useEffect(() => {
     setisLoading(true);
@@ -67,8 +74,10 @@ const UserActivityTable = ({ handleError }) => {
   }, []);
 
   const getCustomDateUsers = () => {
-    console.log(startDate);
-    console.log(endDate);
+    const resetSdate = startDate.setHours(0, 0, 0, 0);
+    const resetEdate = endDate.setHours(23, 59, 59, 999);
+
+    console.log(resetSdate);
 
     if (startDate < endDate) {
       console.log("smartAttack");
@@ -103,6 +112,9 @@ const UserActivityTable = ({ handleError }) => {
     } else if (startDate.getTime() === endDate.getTime()) {
       const nSDate = startDate.setHours(0, 0, 0, 0);
       const nEDate = endDate.setHours(23, 59, 59, 999);
+
+      console.log(nSDate);
+      console.log(nEDate);
 
       db.collection("user")
         .orderBy("loginAt")
@@ -187,11 +199,7 @@ const UserActivityTable = ({ handleError }) => {
           data={tableData}
           title="Customer Log ins"
           isLoading={isLoading}
-          options={{
-            headerStyle: {
-              zIndex: 0,
-            },
-          }}
+          options={options}
         />
       </div>
     </React.Fragment>
