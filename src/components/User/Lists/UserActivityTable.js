@@ -74,13 +74,10 @@ const UserActivityTable = ({ handleError }) => {
   }, []);
 
   const getCustomDateUsers = () => {
-    const resetSdate = startDate.setHours(0, 0, 0, 0);
-    const resetEdate = endDate.setHours(23, 59, 59, 999);
-
-    console.log(resetSdate);
+    startDate.setHours(0, 0, 0, 0);
+    endDate.setHours(23, 59, 59, 999);
 
     if (startDate < endDate) {
-      console.log("smartAttack");
       db.collection("user")
         .orderBy("loginAt")
         // .where("loginAt", ">=", startDate)
@@ -109,41 +106,6 @@ const UserActivityTable = ({ handleError }) => {
           console.log(err);
           handleError(err.message);
         });
-    } else if (startDate.getTime() === endDate.getTime()) {
-      const nSDate = startDate.setHours(0, 0, 0, 0);
-      const nEDate = endDate.setHours(23, 59, 59, 999);
-
-      console.log(nSDate);
-      console.log(nEDate);
-
-      db.collection("user")
-        .orderBy("loginAt")
-        .startAt(nSDate)
-        .endAt(nEDate)
-        .get()
-        .then((snapShot) => {
-          console.log(snapShot.docs);
-          const mArr = snapShot.docs.map((result) => {
-            const invData = result.data();
-            const loginAt = convTimestamp(invData.loginAt.seconds);
-            const { location } = invData;
-
-            return {
-              userId: result.id,
-              email: invData.email ? invData.email : "No email",
-              mobile: invData.mobile ? invData.mobile : "No mobile number",
-              loginTime: loginAt.format("hh:mma"),
-              loginDate: loginAt.format("D/M/YYYY"),
-              loginLocal: `${location.city}, ${location.country_code}`,
-            };
-          });
-          setTableData(mArr);
-        })
-        .catch((err) => {
-          console.log("push change to remote branch for review");
-          console.log(err);
-          handleError(err.message);
-        });
     } else {
       handleError("Start date must be before or the same as the end date ");
     }
@@ -167,6 +129,7 @@ const UserActivityTable = ({ handleError }) => {
 
     setEndDate(date);
   };
+
   return (
     <React.Fragment>
       <div className={classes.root}>
