@@ -3,7 +3,7 @@ import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import UserActivityTable from "../components/User/Lists/UserActivityTable";
 import ErrorAlert from "../components/Alerts/ErrorAlert";
-import LineDailyUsers from "../components/Charts/LineDailyUsers";
+// import LineDailyUsers from "../components/Charts/LineDailyUsers";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,13 +37,13 @@ const Admin = (props) => {
         <Grid item xs={12}>
           <UserActivityTable handleError={handleError} />
         </Grid>
-        <Grid item container spacing={3}>
+        {/* <Grid item container spacing={3}>
           <Grid item xs={12} md={4}>
             <LineDailyUsers />
           </Grid>
           <Grid item xs={4}></Grid>
           <Grid item xs={4}></Grid>
-        </Grid>
+        </Grid> */}
       </Grid>
     </div>
   );

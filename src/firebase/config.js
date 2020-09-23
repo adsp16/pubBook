@@ -11,8 +11,9 @@ const firebaseConfig = {
   measurementId: "G-CZV55ZDCND",
 };
 
-const fireObj = firebase.initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
 
-const db = fireObj.firestore();
+const db = app.firestore();
+const auth = app.auth();
 
-export { db, fireObj };
+export { db, auth, app };

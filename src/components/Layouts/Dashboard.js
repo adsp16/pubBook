@@ -15,11 +15,13 @@ import useStyles from "./DashboardJSS";
 import PhonelinkRingIcon from "@material-ui/icons/PhonelinkRing";
 import { useTheme } from "@material-ui/core/styles";
 import pbLogo from "../../theme/images/PubBookLogo.png";
+import { useLogout } from "../../hooks/useLogout";
 
 const Dashboard = (props) => {
   const classes = useStyles();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [logout] = useLogout();
   const theme = useTheme();
 
   const handleDrawerToggle = () => {
@@ -30,9 +32,12 @@ const Dashboard = (props) => {
     <div>
       <div className={classes.toolbar} />
       <List>
-        {["Users", "Logout"].map((text, index) => (
+        {[
+          { name: "User", funct: null },
+          { name: "Logout", funct: logout },
+        ].map((obj, index) => (
           <ListItem key={index} button>
-            <ListItemText primary={text} />
+            <ListItemText primary={obj.name} onClick={obj.funct} />
           </ListItem>
         ))}
       </List>
