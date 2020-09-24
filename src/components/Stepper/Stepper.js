@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   Stepper,
+  Grid,
   Step,
   StepLabel,
   Button,
@@ -88,29 +89,34 @@ const VerifiationStepper = () => {
   };
 
   return (
-    <div>
-      <Stepper className={classes.root} activeStep={currentStep}>
-        {steps.map((label) => {
-          return (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      {getStepContent(currentStep)}
-      <Box marginTop={2} display="flex" justifyContent="space-between"></Box>
-      <ErrorAlert
-        setOpen={setsnackOpen}
-        open={snackOpen}
-        errorMessage={errorMessage}
-      />
-      <SuccessAlert
-        successMessage={successMessage}
-        open={successSnackOpen}
-        setOpen={setsuccessSnackOpen}
-      />
-    </div>
+    <Grid>
+      <Grid item xs={12}>
+        <img src={process.env.PUBLIC_URL + "/200x200.png"}></img>
+      </Grid>
+      <Grid item xs={12}>
+        <Stepper className={classes.root} activeStep={currentStep}>
+          {steps.map((label) => {
+            return (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            );
+          })}
+        </Stepper>
+        {getStepContent(currentStep)}
+        <Box marginTop={2} display="flex" justifyContent="space-between"></Box>
+        <ErrorAlert
+          setOpen={setsnackOpen}
+          open={snackOpen}
+          errorMessage={errorMessage}
+        />
+        <SuccessAlert
+          successMessage={successMessage}
+          open={successSnackOpen}
+          setOpen={setsuccessSnackOpen}
+        />
+      </Grid>
+    </Grid>
   );
 };
 

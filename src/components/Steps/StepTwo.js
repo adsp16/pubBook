@@ -416,9 +416,6 @@ const StepTwo = React.memo(
           <Box onClick={backStep} variant="contained">
             <ArrowBack />
           </Box>
-          <Box onClick={nextStep}>
-            <ArrowForward />
-          </Box>
         </Grid>
       </Grid>
     );

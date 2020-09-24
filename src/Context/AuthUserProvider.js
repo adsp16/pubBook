@@ -8,7 +8,7 @@ export const AuthUserProvider = (props) => {
 
   useEffect(() => {
     app.auth().onAuthStateChanged(setCurrentUser);
-  }, []);
+  }, [currentUser]);
 
   return (
     <AuthContext.Provider value={{ currentUser }}>
