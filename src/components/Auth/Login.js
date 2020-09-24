@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import { useStyles } from "./LoginJSS";
 import { useForm } from "../../hooks/useForm";
 import Avatar from "@material-ui/core/Avatar";
@@ -14,11 +14,11 @@ import Box from "@material-ui/core/Box";
 import ErrorAlert from "../Alerts/ErrorAlert";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Container from "@material-ui/core/Container";
-import { auth } from "../../firebase/config";
+import { auth, app } from "../../firebase/config";
+import { withRouter, Redirect } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthUserProvider";
 
 const Login = (props) => {
-  console.log("rendered");
-
   const classes = useStyles();
   const [formData, setData] = useForm({
     email: "",
@@ -31,24 +31,38 @@ const Login = (props) => {
     setData(event);
   };
 
-  const submitLogin = (event) => {
-    event.preventDefault();
+  const submitLogin = useCallback(
+    (event) => {
+      event.preventDefault();
+      const { email, password } = formData;
 
-    const { email, password } = formData;
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then(() => {
-        props.history.push("/admin-dashboard");
-      })
-      .catch((err) => {
-        console.log(err);
-        setErrorMessage("Username or password is incorrect");
-        setOpen(true);
-      });
-  };
+      auth
+        .signInWithEmailAndPassword(email, password)
+        .then((user) => {
+          props.history.push("/admin-dashboard");
+        })
+        .catch((err) => {
+          console.log(err);
+          setErrorMessage("Username or password is incorrect");
+          setOpen(true);
+        });
+    },
+    [props.history, formData]
+  );
+
+  const { currentUser } = useContext(AuthContext);
+
+  if (currentUser) {
+    return <Redirect to={"/admin-dashboard"} />;
+  }
 
   return (
     <React.Fragment>
+      <Box w={100} m={4} display="flex" justifyContent="flex-end">
+        <Button variant="contained" color="primary">
+          Dashboard
+        </Button>
+      </Box>
       <ErrorAlert open={open} setOpen={setOpen} errorMessage={errorMessage} />
       <Container component="main" maxWidth="xs">
         <Box
@@ -125,4 +139,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default withRouter(Login);

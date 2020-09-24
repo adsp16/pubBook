@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { AuthUserProvider } from "../Context/AuthUserProvider";
+
 import PrivateRoute from "./PrivateRoute";
 import Entry from "../containers/Entry";
 import Admin from "../containers/Admin";
@@ -23,32 +23,28 @@ const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
 
 const AppRouter = () => {
   return (
-    <AuthUserProvider>
-      <Router>
-        <Switch>
-          <AppRoute
-            path="/"
-            component={Entry}
-            layout={Front}
-            exact={true}
-          ></AppRoute>
-          <AppRoute
-            path="/login"
-            component={Login}
-            layout={AuthLayout}
-            exact={true}
-          ></AppRoute>
-          <PrivateRoute>
-            <AppRoute
-              path="/admin-dashboard"
-              component={Admin}
-              layout={Dashboard}
-              exact={true}
-            ></AppRoute>
-          </PrivateRoute>
-        </Switch>
-      </Router>
-    </AuthUserProvider>
+    <Router>
+      <Switch>
+        <AppRoute
+          path="/"
+          component={Entry}
+          layout={Front}
+          exact={true}
+        ></AppRoute>
+        <AppRoute
+          path="/login"
+          component={Login}
+          layout={AuthLayout}
+          exact={true}
+        ></AppRoute>
+        <PrivateRoute
+          path="/admin-dashboard"
+          component={Admin}
+          layout={Dashboard}
+          exact={true}
+        ></PrivateRoute>
+      </Switch>
+    </Router>
   );
 };
 
