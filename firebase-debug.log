@@ -1,0 +1,57 @@
+[debug] [2020-09-29T22:44:30.958Z] ----------------------------------------------------------------------
+[debug] [2020-09-29T22:44:30.958Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Adam\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-09-29T22:44:30.958Z] CLI Version:   8.11.2
+[debug] [2020-09-29T22:44:30.958Z] Platform:      win32
+[debug] [2020-09-29T22:44:30.958Z] Node Version:  v12.18.3
+[debug] [2020-09-29T22:44:30.958Z] Time:          Tue Sep 29 2020 23:44:30 GMT+0100 (British Summer Time)
+[debug] [2020-09-29T22:44:30.958Z] ----------------------------------------------------------------------
+[debug] [2020-09-29T22:44:30.958Z] 
+[debug] [2020-09-29T22:44:30.974Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-09-29T22:44:30.974Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Adam\Documents\Development\pubBook
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  .firebaserc already has a default project, using pubbook-2feaf. 
+[debug] [2020-09-29T22:44:50.950Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-09-29T22:44:50.950Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-09-29T22:44:51.242Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 29 Sep 2020 22:44:49 GMT","server":"scaffolding on HTTPServer2","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-09-29T22:44:51.248Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/pubbook-2feaf  
+ 
+[debug] [2020-09-29T22:44:51.614Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 29 Sep 2020 22:44:50 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2020-09-29T22:45:30.337Z] >>> HTTP REQUEST GET https://www.gstatic.com/firebasejs/releases.json  
+ 
+[debug] [2020-09-29T22:45:30.909Z] Error: unable to verify the first certificate
+    at TLSSocket.onConnectSecure (_tls_wrap.js:1501:34)
+    at TLSSocket.emit (events.js:315:20)
+    at TLSSocket.EventEmitter.emit (domain.js:483:12)
+    at TLSSocket._finishInit (_tls_wrap.js:936:8)
+    at TLSWrap.ssl.onhandshakedone (_tls_wrap.js:710:12)
+[error] 
+[error] Error: Server Error. unable to verify the first certificate

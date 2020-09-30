@@ -89,9 +89,11 @@ const VerifiationStepper = () => {
   };
 
   return (
-    <Grid>
+    <Grid container>
       <Grid item xs={12}>
-        <img src={process.env.PUBLIC_URL + "/200x200.png"}></img>
+        <Box display="flex" justifyContent="center" alignItem="center">
+          <img src={process.env.PUBLIC_URL + "/200x200.png"}></img>
+        </Box>
       </Grid>
       <Grid item xs={12}>
         <Stepper className={classes.root} activeStep={currentStep}>

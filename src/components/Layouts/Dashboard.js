@@ -63,11 +63,17 @@ const Dashboard = (props) => {
               <MenuIcon />
             </IconButton>
             <Box display="flex">
-              {/* <img className={classes.logo} src={pbLogo}></img> */}
-              <Typography style={{ marginRight: "1rem" }} variant="h4">
-                Pub Book
-              </Typography>
-              <PhonelinkRingIcon fontSize="large" />
+              <Box display="flex" alignItems="center">
+                <Typography
+                  align="center"
+                  style={{ marginRight: "1rem" }}
+                  variant="h4"
+                >
+                  Pub Book
+                </Typography>
+              </Box>
+              <img className={classes.logo} src={pbLogo}></img>
+              {/* <PhonelinkRingIcon fontSize="large" /> */}
             </Box>
           </Toolbar>
         </AppBar>

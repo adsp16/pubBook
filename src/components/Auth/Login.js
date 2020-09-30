@@ -14,6 +14,7 @@ import Box from "@material-ui/core/Box";
 import ErrorAlert from "../Alerts/ErrorAlert";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Container from "@material-ui/core/Container";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { auth, app } from "../../firebase/config";
 import { withRouter, Redirect } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthUserProvider";
@@ -26,6 +27,7 @@ const Login = (props) => {
   });
   const [errorMessage, setErrorMessage] = useState("");
   const [open, setOpen] = useState(false);
+  const [isLoading, setisLoading] = useState(false);
 
   const handleChangeLogin = (event) => {
     setData(event);
