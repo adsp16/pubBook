@@ -1,5 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## LOG IN TO DASHBOARD TO USE ALL FEATURES
+
+DEMO HERE : https://pubbook-2feaf.web.app/ 
+
+Sign In Credentials
+email : git@user.com
+password : admin1
+
 ## Available Scripts
 
 In the project directory, you can run:
